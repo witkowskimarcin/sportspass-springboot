@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Spring for Android Showcase</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <h1>MAOFFER (id: <span th:utext="${maoffer.id}"></span>)</h1>
+
+    <h3>MAOfferDetails</h3>
+    <table border="1" class="table">
+        <tr>
+            <td>id</td><td>text</td><td>description</td><td>price</td><td>entries</td><td></td><td></td>
+        </tr>
+        <tr th:each="god : ${maoffer.maOfferDetailList}">
+            <td th:text="${god.id}"></td>
+            <td th:text="${god.text}"></td>
+            <td th:text="${god.description}"></td>
+            <td th:text="${god.price}"></td>
+            <td th:text="${god.entries}"></td>
+            <td>
+                <a th:href="@{/owner/panel/brand/maoffer/detail/edit(moid=${maoffer.id},modid=${god.id})}">Edit</a>
+            </td>
+            <td>
+                <a th:href="@{/owner/panel/brand/maoffer/detail/delete(moid=${maoffer.id},modid=${god.id})}">Delete</a>
+            </td>
+        </tr>
+    </table>
+    <br>
+    <a th:href="@{/owner/panel/brand/maoffer/detail/add(moid=${maoffer.id})}">Add maofferdetail</a>
+
+
+    <h3>Coaches</h3>
+    <table border="1" class="table">
+        <tr>
+            <td>id</td><td>email</td><td>firstname</td><td>lastname</td><td></td>
+        </tr>
+        <tr th:each="god : ${maoffer.coaches}">
+            <td th:text="${god.id}"></td>
+            <td th:text="${god.email}"></td>
+            <td th:text="${god.firstname}"></td>
+            <td th:text="${god.lastname}"></td>
+            <td>
+                <a th:href="@{/owner/panel/brand/maoffer/coach/delete(moid=${maoffer.id},cid=${god.id})}">Delete</a>
+            </td>
+        </tr>
+    </table>
+    <br>
+    <a th:href="@{/owner/panel/brand/maoffer/coach/add(moid=${maoffer.id})}">Add coach</a>
+
+
+    <br><br>
+    <a th:href="@{/owner/panel/brand(id=${maoffer.brand.id})}">Back</a>
+</body>
+</html>

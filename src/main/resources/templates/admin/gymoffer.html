@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Spring for Android Showcase</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <h1>GYMOFFER (id: <span th:utext="${gymoffer.id}"></span>)</h1>
+
+    <h3>GymOfferDetails</h3>
+    <table border="1">
+        <tr>
+            <td>id</td><td>text</td><td>description</td><td>price</td><td>months</td><td></td><td></td>
+        </tr>
+        <tr th:each="god : ${gymoffer.gymOfferDetailList}">
+            <td th:text="${god.id}"></td>
+            <td th:text="${god.text}"></td>
+            <td th:text="${god.description}"></td>
+            <td th:text="${god.price}"></td>
+            <td th:text="${god.months}"></td>
+            <td>
+                <a th:href="@{/admin/panel/brand/gymoffer/detail/edit(goid=${gymoffer.id},godid=${god.id})}">Edit</a>
+            </td>
+            <td>
+                <a th:href="@{/admin/panel/brand/gymoffer/detail/delete(goid=${gymoffer.id},godid=${god.id})}">Delete</a>
+            </td>
+        </tr>
+    </table>
+    <br>
+    <a th:href="@{/admin/panel/brand/gymoffer/detail/add(goid=${gymoffer.id})}">Add gymofferdetail</a>
+
+
+    <br><br>
+    <a th:href="@{/admin/panel/brand(id=${gymoffer.brand.id})}">Back</a>
+</body>
+</html>

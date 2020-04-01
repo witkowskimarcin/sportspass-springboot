@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Spring for Android Showcase</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <h1>BRANDS MANAGE</h1>
+
+    <table border="1">
+        <tr>
+            <td>image</td>
+            <td>id</td>
+            <td>name</td>
+            <td>owner id</td>
+            <td>owner email</td>
+            <td>owner firstname</td>
+            <td>owner lastname</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr th:each="brand : ${brands}">
+            <td ><img class="card-img-top" th:src="@{'data:image/jpeg;base64,'+${brand.getImage()}}" alt="image" style="max-height: 180px; width: auto;"></td>
+            <td th:utext="${brand.id}"></td>
+            <td><a th:utext="${brand.name}"  th:href="@{/admin/panel/brand(id=${brand.id})}"></a></td>
+            <td><a th:utext="${brand.owner.id}"></a></td>
+            <td><a th:utext="${brand.owner.email}"></a></td>
+            <td><a th:utext="${brand.owner.firstname}"></a></td>
+            <td><a th:utext="${brand.owner.lastname}"></a></td>
+            <td><a th:utext="Edit" th:href="@{/admin/panel/brand/edit(id=${brand.id})}"></a></td>
+            <td><a th:utext="Delete" th:href="@{/admin/panel/brand/delete(id=${brand.id})}"></a></td>
+        </tr>
+    </table>
+    <br>
+    <a th:href="@{/admin/panel/brand/add}">Add brand</a><br><br>
+    <a th:href="@{/admin/panel}">Back</a>
+</body>
+</html>

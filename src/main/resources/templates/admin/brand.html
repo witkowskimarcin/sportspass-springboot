@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Spring for Android Showcase</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <div th:if="${error==false}">
+    <h1>EDITING BRAND (id: <span th:utext="${brand.id}"></span>)</h1>
+
+
+        <h3>Informations</h3><br>
+    <table border="1">
+        <tr>
+            <td>id</td>
+            <td>Name</td>
+            <td>Owner id</td>
+            <td>Owner email</td>
+            <td>Owner firstname</td>
+            <td>Owner lastname</td>
+            <td>Image</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td th:text="${brand.id}"></td>
+            <td th:text="${brand.name}"></td>
+            <td th:text="${brand.owner.id}"></td>
+            <td th:text="${brand.owner.email}"></td>
+            <td th:text="${brand.owner.firstname}"></td>
+            <td th:text="${brand.owner.lastname}"></td>
+            <td><img class="card-img-top" th:src="@{'data:image/jpeg;base64,'+${brand.getImage()}}" alt="image" style="max-height: 180px; width: auto;"></td>
+            <td><a th:href="@{/admin/panel/brand/edit(id=${brand.id})}">Edit</a></td>
+            <td><a th:href="@{/admin/panel/brand/delete(id=${brand.id})}">Delete</a></td>
+        </tr>
+    </table>
+    </div>
+    <br>
+    <br>
+
+    <h3>GymOffers</h3>
+    <table border="1">
+        <tr>
+            <td>id</td><td>location</td><td>street</td><td>description</td><td></td><td></td><td></td>
+        </tr>
+        <tr th:each="go : ${gymoffer}">
+            <td th:text="${go.id}"></td><td th:text="${go.location}"></td><td th:text="${go.street}"></td><td th:text="${go.description}"></td>
+            <td>
+                <a th:href="@{/admin/panel/brand/gymoffer(bid=${brand.id},goid=${go.id})}">Manage</a>
+            </td>
+            <td>
+                <a th:href="@{/admin/panel/brand/gymoffer/edit(bid=${brand.id},goid=${go.id})}">Edit</a>
+            </td>
+            <td>
+                <a th:href="@{/admin/panel/brand/gymoffer/delete(goid=${go.id})}">Delete</a>
+            </td>
+        </tr>
+    </table>
+    <br>
+    <a th:href="@{/admin/panel/brand/gymoffer/add(bid=${brand.id})}">Add gymoffer</a>
+
+    <br>
+    <br>
+
+    <h3>MAOffers</h3>
+    <table border="1">
+        <tr>
+            <td>id</td><td>location</td><td>street</td><td>description</td><td></td><td></td><td></td>
+        </tr>
+        <tr th:each="go : ${maoffer}">
+            <td th:text="${go.id}"></td><td th:text="${go.location}"></td><td th:text="${go.street}"></td><td th:text="${go.description}"></td>
+            <td>
+                <a th:href="@{/admin/panel/brand/maoffer(bid=${brand.id},moid=${go.id})}">Manage</a>
+            </td>
+            <td>
+                <a th:href="@{/admin/panel/brand/maoffer/edit(bid=${brand.id},moid=${go.id})}">Edit</a>
+            </td>
+            <td>
+                <a th:href="@{/admin/panel/brand/maoffer/delete(moid=${go.id})}">Delete</a>
+            </td>
+        </tr>
+    </table>
+    <br>
+    <a th:href="@{/admin/panel/brand/maoffer/add(bid=${brand.id})}">Add maoffer</a>
+
+    <br><br><br>
+    <a th:href="@{/admin/panel/brands}">Back</a>
+</body>
+</html>
